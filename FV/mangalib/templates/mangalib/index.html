@@ -1,4 +1,5 @@
 {% load static %}
+{% load customtags %}
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -13,11 +14,10 @@
   <body>
     <h1>Bienvenue sur Mangalib !</h1>
 
+    {% get_mangas username as name %}
     <p>{{ message | truncatewords:8 }}</p>
+    <p>{{name}}</p>
 
-    <p>  {{  usersList | random }}</p>
-
-    <p> {{link | urlencode}}</p>
-
+ 
   </body>
 </html>
