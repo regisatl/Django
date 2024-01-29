@@ -4,5 +4,5 @@ register = template.Library()
 
 @register.simple_tag
 def get_mangas(username):
-      return f"hello {username} !"
+      return f"Hello {username} !"
 
