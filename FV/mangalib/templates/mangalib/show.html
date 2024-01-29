@@ -7,7 +7,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link rel="stylesheet" href="{% static 'global.css' %}" />
     <link rel="stylesheet" href="{% static 'mangalib/css/main.css' %}" />
     <title>Mes Mangas</title>
@@ -16,6 +15,7 @@
     
     <h1>{{book.title}}</h1>
     <p>Quantité : {{book.quantity}}</p>
+    <p>Auteur : {{book.author.name}}</p>
     <p><a href="{%url 'mangalib:index' %}">&laquo; Revenir à la liste des livres</a></p>
 
  

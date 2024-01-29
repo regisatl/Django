@@ -1,7 +1,24 @@
 body {
       background-color: #eee;
-      color: #3d60cb;
+      color: blueviolet;
       width: 800px;
       margin: 0 auto;
-      font-family: Poppins;
+      font-family:Tahoma, sans-serif;
+      line-height: 1.5rem;
+}
+
+a {
+      text-decoration: underline;
+      color: red;
+}
+
+ul, li {
+      margin: 0;
+      padding: 0;
+      color:black
+}
+
+li {
+      list-style: circle;
+      font-size: large;
 }
