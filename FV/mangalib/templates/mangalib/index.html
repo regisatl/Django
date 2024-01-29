@@ -13,9 +13,11 @@
   <body>
     <h1>Bienvenue sur Mangalib !</h1>
 
-    <p>{{ message | upper }}</p>
+    <p>{{ message | truncatewords:8 }}</p>
 
-      
+    <p>  {{  usersList | random }}</p>
+
+    <p> {{link | urlencode}}</p>
 
   </body>
 </html>
