@@ -3,7 +3,7 @@ body {
       color: blueviolet;
       width: 800px;
       margin: 0 auto;
-      font-family:Tahoma, sans-serif;
+      font-family: Tahoma, sans-serif;
       line-height: 1.5rem;
 }
 
@@ -12,10 +12,15 @@ a {
       color: red;
 }
 
-ul, li {
+a:hover {
+      color: black;
+}
+
+ul,
+li {
       margin: 0;
       padding: 0;
-      color:black
+      color: black
 }
 
 li {
