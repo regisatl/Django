@@ -12,10 +12,9 @@
     <title>Mes Mangas</title>
   </head>
   <body>
-    <h1>Bienvenue sur Mangalib !</h1>
-
+    
     {% get_mangas username as name %}
-    <p>{{ message | truncatewords:8 }}</p>
+    <h1>{{ message }}</h1>
     <p>{{name}}</p>
 
  

@@ -6,7 +6,8 @@ from django.template import loader
 
 def index(request):
       context = {
-            "username": "Jack Sparrow"
+            "message": "Bienvenue sur le site de MangaLib",
+            "username": "Régis ATTOLOU"
             }
       template = loader.get_template("mangalib/index.html")
       return HttpResponse(template.render(context, request))
