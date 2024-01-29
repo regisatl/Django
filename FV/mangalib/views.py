@@ -31,7 +31,6 @@ def show(request, book_id):
 
 
 def add(request):
-      author = Author.objects.get(name ="Akira Toriyama")
-      book = Book.objects.create(title ="Dragon Ball Z", quantity = 13, author = author)
-      book.save()
-      return redirect('mangalib.index')
+      author = Author.objects.get(name="Masashi Kishimoto")
+      book = Book.objects.create(title="Boruto Next Generation", quantity=10, author=author)
+      return redirect('mangalib:index')
