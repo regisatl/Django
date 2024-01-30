@@ -34,3 +34,15 @@ def add(request):
       author = Author.objects.get(name="Masashi Kishimoto")
       book = Book.objects.create(title="Boruto Next Generation", quantity=10, author=author)
       return redirect('mangalib:index')
+
+def edit(request):
+      book = Book.objects.get(title="Dragon Ball")
+      book.title = "Dragon Ball Super"
+      book.save()
+      return redirect("mangalib:index")
+      
+def remove(request):
+      book = Book.objects.filter(title__startswith = "Dragon Ball")
+      book.delete()
+      return redirect("mangalib:index")
+      
