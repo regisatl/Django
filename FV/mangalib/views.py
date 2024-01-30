@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.template import loader
 from .models import Book, Author
-
+from .forms import SomeForm
 
 """
 SELECT : all(), get()
@@ -21,14 +21,24 @@ One-to-one : 1 -> 1
 
 raw()
 
+  # context = {
+      #       "books": Book.objects.all()
+      # }
+      # return render(request, "mangalib/index.html", context)
+
 """
 # Create your views here.
 
 def index(request):
-      context = {
-            "books": Book.objects.all()
-      }
-      return render(request, "mangalib/index.html", context)
+      if request.method == 'POST':
+            form = SomeForm(request.POST)
+            if form.is_valid():
+                  return redirect('mangalib:index')
+      else:
+            form = SomeForm()
+
+      return render(request, "mangalib/index.html", {"form" : form})
+      
 
 
 def show(request, book_id):
