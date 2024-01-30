@@ -1,6 +1,6 @@
 body {
       background-color: #eee;
-      color: blueviolet;
+      color:darkslategray;
       width: 800px;
       margin: 0 auto;
       font-family: Tahoma, sans-serif;
@@ -9,7 +9,7 @@ body {
 
 a {
       text-decoration: underline;
-      color: red;
+      color: darkslategrey;
 }
 
 a:hover {
