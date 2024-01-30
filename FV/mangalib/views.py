@@ -15,6 +15,12 @@ INSERT : CREATE()
 
 save(), delete()
 
+Many-to-many : A*->B -> A*
+
+One-to-one : 1 -> 1
+
+raw()
+
 """
 # Create your views here.
 
@@ -45,4 +51,16 @@ def remove(request):
       book = Book.objects.filter(title__startswith = "Dragon Ball")
       book.delete()
       return redirect("mangalib:index")
-      
+
+"""
+many to many
+
+book = Book.objects.get(pk = 1)
+author = Author.objects.create(name = "Chuck Norris")
+book.authors.add(author)
+
+One to one
+
+user.save()
+user_identity.save()
+"""

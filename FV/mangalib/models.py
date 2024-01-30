@@ -17,6 +17,9 @@ FloateField
 EmailField
 BooleanField
 
+class Book(models.Model):
+      authors = models.ManyToManyField(Author)
+
 """
 
 class Author(models.Model):
