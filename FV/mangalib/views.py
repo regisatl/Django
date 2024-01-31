@@ -1,8 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from django.template import loader
 from .models import Book, Author
-from .forms import SomeForm
+# from .forms import SomeForm
 
 """
 SELECT : all(), get()
@@ -30,14 +29,17 @@ raw()
 # Create your views here.
 
 def index(request):
-      if request.method == 'POST':
-            form = SomeForm(request.POST)
-            if form.is_valid():
-                  return redirect('mangalib:index')
-      else:
-            form = SomeForm()
+      context = { "books": Book.objects.all() }
+      return render(request, "mangalib/index.html", context)
 
-      return render(request, "mangalib/index.html", {"form" : form})
+      # if request.method == 'POST':
+      #       form = SomeForm(request.POST)
+      #       if form.is_valid():
+      #             return redirect('mangalib:index')
+      # else:
+      #       form = SomeForm()
+
+      # return render(request, "mangalib/index.html", {"form" : form})
       
 
 
@@ -57,8 +59,8 @@ def edit(request):
       book.save()
       return redirect("mangalib:index")
       
-def remove(request):
-      book = Book.objects.filter(title__startswith = "Dragon Ball")
+def remove(request, book_id):
+      book = Book.objects.get(pk = book_id)
       book.delete()
       return redirect("mangalib:index")
 

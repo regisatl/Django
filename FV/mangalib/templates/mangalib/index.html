@@ -14,11 +14,35 @@
   <body>
     <h1>Bienvenue sur MangaLib</h1>
 
-      <form method="post">
+      {% comment %} <form method="post">
         {% csrf_token %}
-        {{form}}
+        {{form.as_table}}
         <input type = "submit" value="Valider"/>
-      </form>
+      </form> {% endcomment %}
+
+      <p><a href="{% url 'mangalib:add' %}">Ajouter un livre</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Auteur</th>
+            <th>Quantité</th>
+            <th colspan="2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for book in books %}
+          <tr>
+            <td><a href="{% url 'mangalib:show' book.id %}">{{ book.title }}</a></td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.quantity }}</td>
+            <td><a href="{% url 'mangalib:edit' %}">🖍</a></td>
+            <td><a href="{% url 'mangalib:delete' book.id %}">❌</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br/>
 
   </body>
 </html>
