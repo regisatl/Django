@@ -50,6 +50,7 @@ def add(request):
 
 def edit(request, book_id):
       book = get_object_or_404(Book, pk = book_id)
+      
       if request.method == 'POST':
             form = BookForm(request.POST, instance = book)
             if form.is_valid():
