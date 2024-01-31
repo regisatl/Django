@@ -21,29 +21,29 @@ class BookForm(forms.ModelForm):
 
 
 # Définition de la classe SomeForm qui hérite de forms.Form. Cette classe représente un formulaire personnalisé.
-class SomeForm(forms.Form):
-    # Définition d'un champ CharField pour le nom d'utilisateur. Ce champ a une longueur maximale de 30 caractères.
-    username = forms.CharField(label="Your username", max_length=30)
-    # Définition d'un champ CharField pour le mot de passe. Ce champ utilise un widget PasswordInput pour masquer la saisie.
-    password = forms.CharField(label="Your password", widget=forms.PasswordInput)
-    # Définition d'un champ CharField pour la biographie. Ce champ utilise un widget Textarea pour permettre la saisie de texte multiligne.
-    bio = forms.CharField(label="Biographie", widget=forms.Textarea)
+# class SomeForm(forms.Form):
+#     # Définition d'un champ CharField pour le nom d'utilisateur. Ce champ a une longueur maximale de 30 caractères.
+#     username = forms.CharField(label="Your username", max_length=30)
+#     # Définition d'un champ CharField pour le mot de passe. Ce champ utilise un widget PasswordInput pour masquer la saisie.
+#     password = forms.CharField(label="Your password", widget=forms.PasswordInput)
+#     # Définition d'un champ CharField pour la biographie. Ce champ utilise un widget Textarea pour permettre la saisie de texte multiligne.
+#     bio = forms.CharField(label="Biographie", widget=forms.Textarea)
 
-    # Définition d'une liste de langages.
-    languages = [("c", "Langage C"), ("php", "Langage PHP")]
-    # Définition d'un champ MultipleChoiceField pour les langages connus. Ce champ représente une liste de cases à cocher.
-    language = forms.MultipleChoiceField(
-        label="Langages connus", widget=forms.CheckboxSelectMultiple, choices=languages
-    )
+#     # Définition d'une liste de langages.
+#     languages = [("c", "Langage C"), ("php", "Langage PHP")]
+#     # Définition d'un champ MultipleChoiceField pour les langages connus. Ce champ représente une liste de cases à cocher.
+#     language = forms.MultipleChoiceField(
+#         label="Langages connus", widget=forms.CheckboxSelectMultiple, choices=languages
+#     )
 
-    # Définition d'une liste de couleurs.
-    colors = [("1", "Rouge"), ("2", "Bleu"), ("3", "vert")]
-    # Définition d'un champ ChoiceField pour la couleur dominante. Ce champ représente une liste de boutons radio.
-    color = forms.ChoiceField(
-        label="Couleurdominante", choices=colors, widget=forms.RadioSelect
-    )
+#     # Définition d'une liste de couleurs.
+#     colors = [("1", "Rouge"), ("2", "Bleu"), ("3", "vert")]
+#     # Définition d'un champ ChoiceField pour la couleur dominante. Ce champ représente une liste de boutons radio.
+#     color = forms.ChoiceField(
+#         label="Couleurdominante", choices=colors, widget=forms.RadioSelect
+#     )
 
-    # Définition d'une liste de pays.
-    countries = [("fr", "France"), ("jp", "Japon"), ("kr", "Corée du Sud")]
-    # Définition d'un champ ChoiceField pour le pays. Ce champ représente une liste déroulante.
-    country = forms.ChoiceField(label="Country", choices=countries)
+#     # Définition d'une liste de pays.
+#     countries = [("fr", "France"), ("jp", "Japon"), ("kr", "Corée du Sud")]
+#     # Définition d'un champ ChoiceField pour le pays. Ce champ représente une liste déroulante.
+#     country = forms.ChoiceField(label="Country", choices=countries)
