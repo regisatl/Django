@@ -1,11 +1,20 @@
 from django import forms
-
+from .models import Author, Book
 
 """
 CharField
 <input>
       type = "email"
 """
+class BookForm(forms.ModelForm):
+      author  = forms.ModelChoiceField(queryset=Author.objects.all(), label = "Auteur")
+      
+      class Meta:
+            model = Book
+            fields = ['title', 'quantity', 'author']
+            labels = {'title': 'Titre', 'quantity': 'Quantité'}
+
+
 
 # class SomeForm(forms.Form):
 #       username = forms.CharField(label='Your username', max_length=30)

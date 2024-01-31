@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Book, Author
-# from .forms import SomeForm
+from .forms import BookForm
 
 """
 SELECT : all(), get()
@@ -31,17 +31,7 @@ raw()
 def index(request):
       context = { "books": Book.objects.all() }
       return render(request, "mangalib/index.html", context)
-
-      # if request.method == 'POST':
-      #       form = SomeForm(request.POST)
-      #       if form.is_valid():
-      #             return redirect('mangalib:index')
-      # else:
-      #       form = SomeForm()
-
-      # return render(request, "mangalib/index.html", {"form" : form})
       
-
 
 def show(request, book_id):
       context = {"book" : get_object_or_404(Book, pk =book_id)}
@@ -49,15 +39,15 @@ def show(request, book_id):
 
 
 def add(request):
-      author = Author.objects.get(name="Masashi Kishimoto")
-      book = Book.objects.create(title="Boruto Next Generation", quantity=10, author=author)
-      return redirect('mangalib:index')
-
-def edit(request):
-      book = Book.objects.get(title="Dragon Ball")
-      book.title = "Dragon Ball Super"
-      book.save()
-      return redirect("mangalib:index")
+      if request.method == 'POST':
+            form = BookForm(request.POST)
+            if form.is_valid():
+                  form.save()
+                  return redirect("mangalib:index")
+      else:
+            form = BookForm()
+      return render(request, "mangalib/book-form.html", {"form" : form})
+      
       
 def remove(request, book_id):
       book = Book.objects.get(pk = book_id)
