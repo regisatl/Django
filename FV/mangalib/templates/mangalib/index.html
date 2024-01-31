@@ -14,12 +14,6 @@
   <body>
     <h1>Bienvenue sur MangaLib</h1>
 
-      {% comment %} <form method="post">
-        {% csrf_token %}
-        {{form.as_table}}
-        <input type = "submit" value="Valider"/>
-      </form> {% endcomment %}
-
       <p><a href="{% url 'mangalib:add' %}">Ajouter un livre</p>
       <table>
         <thead>
@@ -47,3 +41,8 @@
   </body>
 </html>
 {% comment %} {% include 'mangalib/include/end_page.html' %} {% endcomment %}
+      {% comment %} <form method="post">
+        {% csrf_token %}
+        {{form.as_table}}
+        <input type = "submit" value="Valider"/>
+      </form> {% endcomment %}
