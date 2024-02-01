@@ -20,6 +20,25 @@ class BookForm(forms.ModelForm):
         labels = {"title": "Titre", "quantity": "Quantité"}
 
 
+    # Définition de la méthode clean_quantity. Cette méthode vérifie que la quantité n'est pas supérieure à 0.
+    def clean_quantity(self):
+        # Dans ce cas, une erreur de validation sera lancée.
+        quantity = self.cleaned_data["quantity"]
+        if quantity <= 0 or quantity > 100:
+            raise forms.ValidationError("La quantité doit être entre 1 et 100")
+        return quantity
+    
+    def clean(self):
+        title = self.cleaned_data.get('title')
+        quantity = self.cleaned_data.get('quantity')
+        
+        if title and quantity:
+            if title.startswith('Dragon Ball') and quantity < 10:
+                raise forms.ValidationError("Minimum une quantité de 10 pour un livre Dragon Ball")
+        return self.cleaned_data
+        
+
+
 # Définition de la classe SomeForm qui hérite de forms.Form. Cette classe représente un formulaire personnalisé.
 # class SomeForm(forms.Form):
 #     # Définition d'un champ CharField pour le nom d'utilisateur. Ce champ a une longueur maximale de 30 caractères.
