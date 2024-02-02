@@ -12,6 +12,13 @@
     <title>Mes Mangas</title>
   </head>
   <body>
+
+    {% if user.is_authenticated %}
+      <p>Connecté sous {{user.username}} | <a href="{% url 'accounts:logout_user' %}">Déconnexion</a> </p>
+    {% else %} 
+      <p><a href="{% url 'accounts:login_user' %}">Connexion</a> | <a href="{% url 'accounts:register_user' %}">Inscription</a></p>
+    {% endif %}
+
     <h1>Bienvenue sur MangaLib</h1>
 
       <p><a href="{% url 'mangalib:add' %}">Ajouter un livre</p>
