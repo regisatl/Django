@@ -36,4 +36,5 @@ def register_user(request):
                   return redirect("mangalib:index")
       else:
             form = UserCreationForm()
+            
       return render(request, "accounts/register.html", {"form": form})
