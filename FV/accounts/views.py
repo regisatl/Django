@@ -23,9 +23,17 @@ def login_user(request):
       return render(request, "accounts/login.html", {"form": form})
 
 
-def register_user(request):
-      pass
-
 def logout_user(request):
       logout(request)
       return redirect("mangalib:index")
+
+def register_user(request):
+      if request.method == 'POST':
+            form = UserCreationForm(request.POST)
+            
+            if form.is_valid():
+                  form.save()
+                  return redirect("mangalib:index")
+      else:
+            form = UserCreationForm()
+      return render(request, "accounts/register.html", {"form": form})
