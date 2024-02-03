@@ -1,8 +1,9 @@
 # Importation des modules nécessaires
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Book, Author  # Importation des modèles Book et Author
-from .forms import BookForm  # Importation du formulaire pour le modèle Book
+from .forms import BookForm  # Importation du formulaire pour le modèle 
 
 # Les commentaires suivants expliquent comment utiliser l'ORM Django pour interagir avec la base de données
 """
@@ -25,7 +26,6 @@ raw()  # Pour exécuter une requête SQL brute
 
 # Définition des vues
 
-
 def index(request):  # Vue pour la page d'accueil
     context = {"books": Book.objects.all()}  # Récupération de tous les livres
     return render(
@@ -33,6 +33,7 @@ def index(request):  # Vue pour la page d'accueil
     )  # Rendu de la page avec le contexte
 
 
+@permission_required('mangalib.delete_book')
 def show(request, book_id):  # Vue pour afficher un livre spécifique
     context = {
         "book": get_object_or_404(Book, pk=book_id)
