@@ -22,6 +22,10 @@ Many-to-many : A*->B -> A*  # Relation many-to-many
 One-to-one : 1 -> 1  # Relation one-to-one
 
 raw()  # Pour exécuter une requête SQL brute
+
+user.groups.set([gr1, gr2])
+user.group.add("Visiteurs)
+user.groups.remove("Visiteurs)
 """
 
 # Définition des vues
@@ -33,7 +37,7 @@ def index(request):  # Vue pour la page d'accueil
     )  # Rendu de la page avec le contexte
 
 
-@permission_required('mangalib.delete_book', raise_exception= True) 
+@permission_required('mangalib.view_book', raise_exception= True) 
 def show(request, book_id):  # Vue pour afficher un livre spécifique
     context = {
         "book": get_object_or_404(Book, pk=book_id)
@@ -42,7 +46,7 @@ def show(request, book_id):  # Vue pour afficher un livre spécifique
         request, "mangalib/show.html", context
     )  # Rendu de la page avec le contexte
 
-
+@permission_required('mangalib.add_book', raise_exception= True) 
 def add(request):  # Vue pour ajouter un nouveau livre
     if request.method == "POST":  # Si la requête est une requête POST
         form = BookForm(request.POST)  # Création du formulaire avec les données POST
@@ -57,7 +61,7 @@ def add(request):  # Vue pour ajouter un nouveau livre
         request, "mangalib/book-form.html", {"form": form}
     )  # Rendu de la page avec le formulaire
 
-
+@permission_required('mangalib.change_book', raise_exception= True) 
 def edit(request, book_id):  # Vue pour modifier un livre existant
     book = get_object_or_404(
         Book, pk=book_id
@@ -78,7 +82,7 @@ def edit(request, book_id):  # Vue pour modifier un livre existant
         request, "mangalib/book-form.html", {"form": form}
     )  # Rendu de la page avec le formulaire
 
-
+@permission_required('mangalib.delete_book', raise_exception= True) 
 def remove(request, book_id):  # Vue pour supprimer un livre
     book = Book.objects.get(pk=book_id)  # Récupération du livre
     book.delete()  # Suppression du livre

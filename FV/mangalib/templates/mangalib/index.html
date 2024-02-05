@@ -1,6 +1,15 @@
 {% comment %} {% include 'mangalib/include/begin_page.html' %} {% endcomment %}
 {% load static %} {% load customtags %}
 
+{% comment %} 
+user.has_perm()
+      .all()
+      add(<perm1>, ...)
+      .remove(<perm1>, ...)
+      .clear()
+      .set([])
+ {% endcomment %}
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -12,6 +21,10 @@
     <title>Mes Mangas</title>
   </head>
   <body>
+
+    {% if perms.mangalib.delete_book %}
+      <p> Oui la permission est acceptée</p>
+    {% endif %}
 
     {% if user.is_authenticated %}
       <p>Connecté sous {{user.username}} | <a href="{% url 'accounts:logout' %}">Déconnexion</a> </p>
