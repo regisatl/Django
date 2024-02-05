@@ -33,7 +33,7 @@ def index(request):  # Vue pour la page d'accueil
     )  # Rendu de la page avec le contexte
 
 
-@permission_required('mangalib.delete_book')
+@permission_required('mangalib.delete_book', raise_exception= True) 
 def show(request, book_id):  # Vue pour afficher un livre spécifique
     context = {
         "book": get_object_or_404(Book, pk=book_id)
