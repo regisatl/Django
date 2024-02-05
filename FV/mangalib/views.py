@@ -1,5 +1,5 @@
 # Importation des modules nécessaires
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Book, Author  # Importation des modèles Book et Author
@@ -26,7 +26,18 @@ raw()  # Pour exécuter une requête SQL brute
 user.groups.set([gr1, gr2])
 user.group.add("Visiteurs)
 user.groups.remove("Visiteurs)
+
+Vue sous forme des classes
+LoginRequiredMixin
+PermissionRequiredMixin
+
+Système de permissions avancé plus fin et plus spécifique
+Django Guardian
+Rules
 """
+
+def is_visitor(user):
+    return user.groups.filter(name= 'Visiteurs').exists()
 
 # Définition des vues
 
@@ -37,14 +48,12 @@ def index(request):  # Vue pour la page d'accueil
     )  # Rendu de la page avec le contexte
 
 
-@permission_required('mangalib.view_book', raise_exception= True) 
+# @permission_required('mangalib.view_book', raise_exception= True) 
+@user_passes_test(is_visitor)
 def show(request, book_id):  # Vue pour afficher un livre spécifique
-    context = {
-        "book": get_object_or_404(Book, pk=book_id)
-    }  # Récupération du livre ou renvoie une erreur 404 si non trouvé
-    return render(
-        request, "mangalib/show.html", context
-    )  # Rendu de la page avec le contexte
+    context = {"book": get_object_or_404(Book, pk=book_id)}  # Récupération du livre ou renvoie une erreur 404 si non trouvé
+    return render(request, "mangalib/show.html", context)  # Rendu de la page avec le contexte
+
 
 @permission_required('mangalib.add_book', raise_exception= True) 
 def add(request):  # Vue pour ajouter un nouveau livre

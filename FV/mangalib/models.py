@@ -64,3 +64,6 @@ class Book(models.Model):
         verbose_name = "Livre"
         # Définition du nom verbeux au pluriel pour les objets de cette classe.
         verbose_name_plural = "Livres"
+        permissions = [
+            ('apply_promo_code', 'Peut appliquer des réductions')
+        ]

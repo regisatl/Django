@@ -29,11 +29,6 @@ table {
       width: 100%;
 }
 
-/* Style de base pour le formulaire */
-form {
-      max-width: 400px;
-      margin: 0 auto;
-}
 
 /* Style pour les champs de formulaire */
 input[type="text"],
@@ -44,6 +39,7 @@ textarea {
       padding: 10px;
       margin: 8px 0;
       box-sizing: border-box;
+      border-radius: 0.5rem;
 }
 
 /* Style pour les boutons du formulaire */
